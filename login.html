@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title"></title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="voucher()">
+
+    <!-- two other colors
+
+<body class="lite">
+<body class="dark">
+
+-->
+    <div style="background-image: url('img/cangguhomestay.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; filter: brightness(70%); height: 100vh; position: absolute; width: 100%;;"></div>
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script src="/md5.js"></script>
+    <script>
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+
+    </script>
+    $(endif)
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap animated fadeIn">
+			
+				<div style="margin-bottom: 20px;">
+                    <img src="img/logo.png" style="width: 100%; height: auto;" alt="">
+                </div>
+			
+                <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                    
+					<div class="info" id="infologin"></div>
+
+					$(if trial == 'yes')
+					<div class="info">Coba gratis <br><br> <a style="text-decoration: none; color:#fff;  padding: 9px 20px; background: rgb(0, 116, 224); border-radius: 10px; box-shadow: 0 4px 2px -2px gray;"  
+                    href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">Klik
+                    di sini</a></div>
+					$(endif)
+
+					$(if error)<div class="notice">$(error)</div>$(endif)
+
+                    <input name="username" type="text" value="$(username)" placeholder="Username" />
+                    <input name="password" type="password" placeholder="Password" />
+					
+                    <input type="submit" value="Connect" />
+
+                </form>
+                <p class="info bt">Powered by MikroTik RouterOS</p>
+
+            </div>
+        </div>
+    </div>
+    
+	
+<script type="text/javascript">
+var hostname = window.location.hostname;
+document.getElementById('title').innerHTML = hostname  + " > login";
+
+
+var infologin = document.getElementById('infologin');
+infologin.innerHTML = "Masukkan Username dan Password<br>kemudian klik login.";
+
+
+// change to member mode
+function member() {
+    username.focus();
+    username.onkeyup = "";
+    username.placeholder = "Username";
+    password.type = "password";
+    infologin.innerHTML = "Masukkan Username dan Password<br>kemudian klik login.";
+}
+</script>
+	
+</body>
+
+</html>
